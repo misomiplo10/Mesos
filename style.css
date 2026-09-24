@@ -6,3 +6,5 @@
 .meso-pile{display:block;width:100%;height:auto;margin-top:30px;mix-blend-mode:multiply}.lore-illustration{min-width:0}
 
 .guides-button{display:flex;width:fit-content;max-width:100%;margin-top:26px;line-height:1.5}
+
+.pfp-nav{font-weight:700}@media(max-width:700px){header{height:auto;min-height:74px;padding-top:12px;padding-bottom:12px;gap:12px}nav{gap:12px;flex-wrap:wrap;justify-content:flex-end}nav .pfp-nav{display:inline-block}.nav-social{padding:8px}.brand{flex-shrink:0}}@media(max-width:420px){nav{font-size:12px;gap:10px}nav>a:first-child{display:none}}
