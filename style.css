@@ -14,3 +14,6 @@
 
 @media(max-width:900px){.rewards{grid-template-columns:1fr;gap:38px}.rewards-copy>p{max-width:none}.rewards-card{max-width:680px;width:100%}}
 @media(max-width:700px){.rewards{padding-top:62px;padding-bottom:62px}.rewards h2{font-size:47px;letter-spacing:-2px}.rewards-card{padding:22px 20px}.reward-row{gap:14px}.reward-row strong{font-size:19px}.rewards-source{flex-direction:column;gap:5px}.rewards-cta,.stonkfun-button{width:100%;text-align:center;line-height:1.45}}
+
+@media(max-width:700px){nav>a:nth-child(2){display:inline-block}nav>a:first-child{display:none}}
+@media(max-width:420px){nav .pfp-nav{display:none}}

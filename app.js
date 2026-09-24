@@ -62,7 +62,7 @@ function renderRewards(data) {
 
   distributedValue.textContent = isNumber(data.distributedUsd)
     ? currencyFormatter.format(data.distributedUsd)
-    : distributedTokens || '—';
+    : distributedTokens || 'Unavailable';
   distributedDetails.textContent = [
     isNumber(data.distributedUsd) ? distributedTokens : null,
     payoutCount,
@@ -73,7 +73,7 @@ function renderRewards(data) {
     ? currencyFormatter.format(data.collectingUsd)
     : isNumber(data.collectingTokens)
       ? `${tokenFormatter.format(data.collectingTokens)} ${symbol}`
-      : '—';
+      : 'Unavailable';
 
   rewardsSource.textContent = 'Live from StonkFun · refreshes every minute';
   holderCount.textContent = isNumber(data.holderCount)
