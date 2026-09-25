@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Maple Tools | $MESO</title>
+  <meta name="description" content="A MapleStory Classic item database, monster drop guide, and EXP calculator from $MESO.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="tools.css">
+</head>
+<body class="tools-page">
+  <header>
+    <a class="brand" href="index.html" aria-label="MESO home"><img class="bag-logo" src="assets/mesos-bag.png" alt="" width="48" height="48"></a>
+    <nav aria-label="Main navigation">
+      <a href="index.html#lore">The lore</a>
+      <a href="about.html">About</a>
+      <a class="nav-current" href="tools.html" aria-current="page">Maple Tools</a>
+      <a class="pfp-nav" href="pfp/">PFP Generator</a>
+      <a class="nav-social" href="https://x.com/MesosOnchain" target="_blank" rel="noopener noreferrer">Find us on X <span>↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="tools-hero">
+      <div class="tools-hero-copy">
+        <p class="quest-label">✦ THE MAPLER'S DESK ✦</p>
+        <h1>Plan the grind.</h1>
+        <p>Look up gear, scout monster drops, and chart the road to your next level.</p>
+      </div>
+      <div class="desk-art" aria-hidden="true">
+        <span class="desk-book">?</span><span class="desk-potion">◆</span><span class="desk-meso">M</span>
+      </div>
+    </section>
+
+    <section class="tool-shell" aria-label="Maple tools">
+      <div class="tool-tabs" role="tablist" aria-label="Choose a tool">
+        <button role="tab" aria-selected="true" aria-controls="items-panel" id="items-tab" data-tool="items"><span>01</span> Items</button>
+        <button role="tab" aria-selected="false" aria-controls="monsters-panel" id="monsters-tab" data-tool="monsters"><span>02</span> Monsters &amp; drops</button>
+        <button role="tab" aria-selected="false" aria-controls="exp-panel" id="exp-tab" data-tool="exp"><span>03</span> EXP calculator</button>
+      </div>
+
+      <section class="tool-panel" id="items-panel" role="tabpanel" aria-labelledby="items-tab">
+        <div class="panel-heading">
+          <div><p class="chapter">01 / ITEM ARCHIVE</p><h2>What are you hunting for?</h2></div>
+          <p>Search thousands of GMS v83 items by name, category, level, or item ID.</p>
+        </div>
+        <div class="search-bar"><span aria-hidden="true">⌕</span><input id="item-search" type="search" placeholder="Search items, such as Pan Lid or potion" autocomplete="off"></div>
+        <div class="filter-row" aria-label="Item categories">
+          <button class="filter" data-item-filter="all">All</button><button class="filter active" data-item-filter="equipment">Equipment</button><button class="filter" data-item-filter="use">Use</button><button class="filter" data-item-filter="etc">Etc.</button><button class="filter" data-item-filter="setup">Setup</button>
+        </div>
+        <p class="result-count" id="item-count"></p>
+        <div class="item-grid" id="item-grid"></div>
+        <nav class="item-pagination" id="item-pagination" aria-label="Item result pages"></nav>
+      </section>
+
+      <section class="tool-panel" id="monsters-panel" role="tabpanel" aria-labelledby="monsters-tab" hidden>
+        <div class="panel-heading">
+          <div><p class="chapter">02 / FIELD GUIDE</p><h2>Know what drops.</h2></div>
+          <p>Browse the complete GMS v83 bestiary with artwork, combat stats, locations, and status flags.</p>
+        </div>
+        <div class="monster-controls">
+          <div class="search-bar"><span aria-hidden="true">⌕</span><input id="monster-search" type="search" placeholder="Search monsters or drops" autocomplete="off"></div>
+          <label>Level range<select id="monster-level"><option value="all">All levels</option><option value="1-10">1 to 10</option><option value="11-20">11 to 20</option><option value="21-30">21 to 30</option><option value="31-50">31 to 50</option><option value="51-70">51 to 70</option><option value="71+">71+</option></select></label>
+        </div>
+        <div class="filter-row" aria-label="Monster categories"><button class="filter active" data-monster-filter="all">All</button><button class="filter" data-monster-filter="boss">Bosses</button><button class="filter" data-monster-filter="undead">Undead</button></div>
+        <p class="result-count" id="monster-count"></p>
+        <div class="monster-grid" id="monster-rows"></div>
+        <nav class="item-pagination" id="monster-pagination" aria-label="Monster result pages"></nav>
+      </section>
+
+      <section class="tool-panel" id="exp-panel" role="tabpanel" aria-labelledby="exp-tab" hidden>
+        <div class="panel-heading">
+          <div><p class="chapter">03 / LEVEL PLAN</p><h2>How long to level up?</h2></div>
+          <p>Set a target, then add your training pace or a monster for a quick estimate.</p>
+        </div>
+        <div class="exp-layout">
+          <form class="exp-form" id="exp-form">
+            <div class="field-pair"><label>Current level<input id="current-level" type="number" min="1" max="99" value="20"></label><label>Target level<input id="target-level" type="number" min="2" max="100" value="30"></label></div>
+            <label>EXP already earned in this level<input id="current-exp" type="number" min="0" value="0"></label>
+            <label>Training monster<select id="training-monster"><option value="">No monster selected</option></select></label>
+            <label>Measured EXP per hour<input id="exp-hour" type="number" min="0" value="10000"></label>
+            <p class="form-note">Estimates use base monster EXP. Party bonuses and other modifiers can change the result.</p>
+          </form>
+          <aside class="exp-result" aria-live="polite">
+            <p class="result-kicker">YOUR TARGET</p><h3 id="level-route">Level 20 to 30</h3>
+            <div class="exp-big"><strong id="exp-needed">0</strong><span>EXP remaining</span></div>
+            <div class="result-stats"><div><strong id="levels-to-go">0</strong><span>levels to go</span></div><div><strong id="kills-needed">Add a monster</strong><span>estimated kills</span></div><div><strong id="time-needed">Add a rate</strong><span>estimated time</span></div></div>
+            <div class="progress-track"><span id="level-progress"></span></div>
+          </aside>
+        </div>
+      </section>
+    </section>
+
+    <section class="preview-note"><span>PREVIEW BUILD</span><p>The item and monster archives now use the full GMS v83 catalogs supplied by MapleStory.io. Detailed acquisition and drop sources still need review before publishing.</p></section>
+  </main>
+
+  <dialog class="item-dialog" id="item-dialog" aria-labelledby="item-dialog-title">
+    <button class="dialog-close" id="dialog-close" type="button" aria-label="Close item details">×</button>
+    <div class="dialog-item-head">
+      <div class="dialog-icon"><img id="dialog-image" alt=""></div>
+      <div><span class="item-meta" id="dialog-meta"></span><h2 id="item-dialog-title"></h2><p id="dialog-description"></p></div>
+    </div>
+    <div class="dialog-stats" id="dialog-stats"></div>
+    <div class="dialog-section"><span>HOW TO FIND IT</span><p id="dialog-source"></p></div>
+    <div class="dialog-section"><span>SOURCE STATUS</span><div class="dialog-tags" id="dialog-monsters"></div></div>
+    <p class="dialog-credit">Item artwork is loaded from MapleStory.io for this local preview.</p>
+  </dialog>
+
+  <dialog class="item-dialog monster-dialog" id="monster-dialog" aria-labelledby="monster-dialog-title">
+    <button class="dialog-close" id="monster-dialog-close" type="button" aria-label="Close monster details">×</button>
+    <div class="dialog-item-head">
+      <div class="dialog-icon monster-dialog-icon"><img id="monster-dialog-image" alt=""></div>
+      <div><span class="item-meta" id="monster-dialog-meta"></span><h2 id="monster-dialog-title"></h2><p id="monster-dialog-description"></p></div>
+    </div>
+    <div class="dialog-stats monster-dialog-stats" id="monster-dialog-stats"></div>
+    <div class="dialog-section"><span>FOUND ON</span><p id="monster-dialog-locations"></p></div>
+    <div class="dialog-section"><span>DROP STATUS</span><div class="dialog-tags"><span>Drop table pending source review</span></div></div>
+    <p class="dialog-credit">Monster artwork and combat data are loaded from MapleStory.io for this local preview.</p>
+  </dialog>
+
+  <footer><a class="brand" href="index.html" aria-label="MESO home"><img class="bag-logo" src="assets/mesos-bag.png" alt="" width="48" height="48"></a><p>An independent nostalgia-inspired token.<br>Not affiliated with or endorsed by Nexon or MapleStory.</p><span>PLAN. HUNT. LEVEL UP. ✦</span></footer>
+  <script src="tools.js"></script>
+</body>
+</html>
