@@ -122,3 +122,19 @@ async function updateRewards() {
 updateRewards();
 setInterval(updateRewards, 60 * 1000);
 document.addEventListener('visibilitychange', updateRewards);
+
+function calendarDaysUntil(dateString, now = new Date()) {
+  const [year, month, day] = dateString.split('-').map(Number);
+  const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  return Math.round((Date.UTC(year, month - 1, day) - today) / 86400000);
+}
+function updateLaunchCountdowns() {
+  document.querySelectorAll('[data-launch-date]').forEach(counter => {
+    const days = calendarDaysUntil(counter.dataset.launchDate);
+    counter.querySelector('strong').textContent = days <= 0 ? '0' : String(days);
+    counter.querySelector('span').textContent = days < 0 ? 'date passed' : days === 0 ? 'scheduled today' : days === 1 ? 'day to go' : 'days to go';
+  });
+}
+updateLaunchCountdowns();
+setInterval(updateLaunchCountdowns, 60000);
+document.addEventListener('visibilitychange', updateLaunchCountdowns);
